@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>MacroMate</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="elements.css" />
+	</head>
+	<body>
+		<div class="page">
+			<a class="flex-center prev-button" href=""><img src="img/arrow-left.svg" alt="" srcset="" /></a>
+			<a class="flex-center next-button" href=""><img src="img/arrow-right.svg" alt="" srcset="" /></a>
+			<div class="Title date"></div>
+			<div class="flex-center-column Goals">
+				<div class="tracked-cal"><div class="tracked-cal-inner">Calories remaining: 1750/2000</div></div>
+				<div class="tracked-workout"><div class="tracked-workout-inner">Calories used: 250/2000</div></div>
+			</div>
+			<div class="flex-center button-container">
+				<a class="button" href="#popup1">Add calories</a>
+				<a class="button" href="#popup1">Add workout</a>
+			</div>
+			<div id="items" class="flex-center-column Items">
+				<div class="item flex-center">
+					<div class="food-label">Burger</div>
+					<div class="flex-center food-icon"><img src="img/food1.svg" alt="food1" /></div>
+					<div class="food-kcal">1000 Kcal</div>
+					<div class="flex-center food-text">
+						<div class="widget proteins">25g Protein</div>
+						<div class="widget carbs">50g Carbs</div>
+						<div class="widget fats">25g Fats</div>
+					</div>
+					<div class="flex-center food-close" ><a class="button close" href="#">Remove</a></div>
+				</div>
+				
+			</div>
+
+			<div id="popup1" class="overlay">
+				<div class="popup">
+					<div class="label popup-title">Add calories</div>
+					<div class="flex-center-column popup-name"><input id = "popup-name"type="text" /></div>
+					<div class="flex-center-column popup-macro">
+						<input id="popup-proteins" placeholder="Enter proteins:" type="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+						<input id="popup-carbs" placeholder="Enter carbs:" type="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+						<input id="popup-fats" placeholder="Enter fats:" type="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+					</div>
+					<div class="flex-center-column popup-kcal"><input id="popup-calories" placeholder="Enter calories:" type="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" /></div>
+					<div class="label popup-label1">Name</div>
+					<div class="label popup-label2">Macros</div>
+					<div class="label popup-label3">Calories</div>
+					<div class="flex-center popup-buttons">
+						<a class="button" onclick="addCalories()" href="#">Add</a>
+						<a class="button close" href="#">Close</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>

@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+:root {
+	--color-dark-gray: #222326;
+	--color-gray: #373b40;
+	--color-light-gray: #79818c;
+	--color-green: #9be872;
+	--color-red: #e76666;
+	--color-blue: #8991e8;
+	--color-dark-red: #e76666a6;
+	--color-dark-blue: #8991e878;
+	--color-dark-green: #9be87290;
+	--color-orange: #f0d582;
+	--color-brown: #e5a478;
+	--color-white: #f2f2f2;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: var(--color-white);
+	font-family: "Quicksand", sans-serif;
+}
+body {
+	background-color: var(--color-dark-gray);
+}
+
+.page {
+	width: 100%;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr [Ite] 1fr 1fr 1fr;
+	grid-template-rows: 0.2fr 1fr 1fr 1fr 1fr 0.5fr;
+	gap: 1rem 0;
+	grid-auto-flow: row;
+	grid-template-areas:
+		". . . date . . ."
+		". . Goals Goals Goals . ."
+		"prev-button . Items Items Items . next-button"
+		"prev-button . Items Items Items . next-button"
+		". . Items Items Items . ."
+		". . buttons buttons buttons . .";
+}
+.flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.flex-center-column {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+h1 {
+	font-size: 3rem;
+	padding: 1rem;
+}
+h2 {
+	font-size: 2rem;
+}
+.button {
+	width: 33%;
+	background-color: var(--color-green);
+	color: var(--color-white);
+	border-radius: 1rem;
+	border: none;
+	text-decoration: none;
+	padding: 0.5rem;
+	text-align: center;
+}
+
+.button:hover {
+	background-color: var(--color-white);
+	color: var(--color-green);
+}
+
+.button-container {
+	grid-area: buttons;
+	width: 100%;
+	justify-content: space-evenly;
+	padding: 1rem;
+}
+
+.date {
+	grid-area: date;
+	text-align: center;
+	color: var(--color-white);
+	font-size: 2rem;
+
+	border-radius: 0 0 1rem 1rem;
+	background-color: var(--color-dark-green);
+	padding: 0.5rem;
+}
+.Goals {
+	grid-area: Goals;
+	justify-content: space-evenly;
+	background-color: var(--color-gray);
+	border-radius: 1rem;
+	padding: 1rem;
+}
+
+.Items {
+	grid-area: Items;
+	overflow: scroll;
+	background-color: var(--color-gray);
+	border-radius: 1rem;
+	padding: 1rem;
+}
+.prev-button {
+	grid-area: prev-button;
+}
+
+.prev-button > img {
+	height: 15%;
+}
+
+.next-button {
+	grid-area: next-button;
+}
+.next-button > img {
+	height: 15%;
+}
+.item {
+	width: 100%;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	background-color: var(--color-dark-gray);
+	border: var(--color-light-gray) 0.1rem solid;
+
+	border-radius: 1rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 0.3fr 0.66fr;
+	gap: 1rem 1rem;
+	grid-template-areas:
+		"food-icon food-icon food-label .. . . . food-close"
+		"food-icon food-icon food-kcal food-kcal food-text food-text food-text food-text";
+}
+
+.food-label {
+	width: 100%;
+	grid-area: food-label;
+	font-size: 2rem;
+}
+
+.food-icon {
+	width: 66%;
+	grid-area: food-icon;
+	padding: 1rem;
+}
+.food-text {
+	grid-area: food-text;
+	justify-content: space-evenly;
+}
+.food-kcal {
+	grid-area: food-kcal;
+	color: var(--color-green);
+	/*     	border: 0.1rem var(--color-green) solid;
+	padding: 0.5rem;
+    border-radius: 1rem; */
+}
+.food-close {
+	grid-area: food-close;
+	height: 100%;
+}
+.food-close > a {
+	width: auto;
+}
+.widget {
+	margin: 0.5rem;
+	padding: 0.5rem;
+	width: 100%;
+	border-radius: 1rem;
+	text-align: center;
+}
+.proteins {
+	border: 0.1rem var(--color-red) solid;
+	color: var(--color-red);
+	background-color: var(--color-dark-gray);
+}
+.carbs {
+	border: 0.1rem var(--color-brown) solid;
+	color: var(--color-brown);
+	background-color: var(--color-dark-gray);
+}
+.fats {
+	border: 0.1rem var(--color-orange) solid;
+	color: var(--color-orange);
+	background-color: var(--color-dark-gray);
+}
+.tracked-cal {
+	width: 100%;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	background-color: var(--color-dark-gray);
+	overflow: hidden;
+	border-radius: 1rem;
+	border: 0.1rem var(--color-red) solid;
+}
+.tracked-cal-inner {
+	width: 25%;
+	height: 100%;
+	padding-left: 1rem;
+	background-color: var(--color-dark-red);
+	white-space: nowrap;
+	padding: 0.5rem;
+	transition: 200ms linear;
+}
+.tracked-workout {
+	width: 100%;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	background-color: var(--color-dark-gray);
+	overflow: hidden;
+	border-radius: 1rem;
+	border: 0.1rem var(--color-blue) solid;
+}
+.tracked-workout-inner {
+	width: 12.5%;
+	height: 100%;
+	padding-left: 1rem;
+	background-color: var(--color-dark-blue);
+	text-overflow: clip;
+	white-space: nowrap;
+	padding: 0.5rem;
+	transition: 200ms linear;
+}

@@ -1,0 +1,138 @@
+:root {
+	--color-darker: #222326;
+	--color-dark: #373b40;
+	--color-green: #9be872;
+	--color-red: #e76666;
+	--color-blue: #8991e8;
+	--color-dark-red: #e76666a6;
+	--color-dark-blue: #8991e878;
+	--color-dark-green: #9be87290;
+	--color-orange: #f0d582;
+	--color-brown: #e5a478;
+	--color-white: #f2f2f2;
+}
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: var(--color-darker);
+	transition: opacity 200ms;
+	visibility: hidden;
+	opacity: 0;
+}
+.overlay:target {
+	visibility: visible;
+	opacity: 1; 
+}
+
+.popup {
+	margin: 2.5rem auto;
+
+	background: var(--color-dark);
+	border-radius: 1rem;
+	width: 30%;
+	height: 50%;
+	position: relative;
+	transition: all 200ms ease-in-out;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+	gap: 0px 0px;
+	grid-auto-flow: row;
+	grid-template-areas:
+		"popup-title popup-title popup-title popup-title popup-title"
+		"popup-label1 popup-label1 popup-name popup-name popup-name"
+		"popup-label2 popup-label2 popup-macro popup-macro popup-macro"
+		"popup-label3 popup-label3 popup-kcal popup-kcal popup-kcal"
+		"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
+}
+
+
+.label {
+	text-align: center;
+	padding: 0.5rem;
+}
+
+.popup-title {
+	grid-area: popup-title;
+	font-size: 2rem;
+}
+.popup-name {
+	grid-area: popup-name;
+}
+
+.popup-label1 {
+	grid-area: popup-label1;
+}
+
+.popup-label2 {
+	grid-area: popup-label2;
+}
+
+.popup-macro {
+	grid-area: popup-macro;
+    justify-content: space-evenly;
+}
+input[type="text"] {
+	background-color: var(--color-darker);
+	border: none;
+	border-radius: 1rem;
+	padding: 0.5rem;
+}
+input[type="text"]:focus {
+	outline: none;
+}
+input[type="number"] {
+	background-color: var(--color-darker);
+	appearance: textfield;
+    border: none;
+	border-radius: 1rem;
+	padding: 0.5rem;
+}
+input[type="number"]:focus {
+	outline: none;
+}
+.popup-label3 {
+	grid-area: popup-label3;
+}
+
+.popup-kcal {
+	grid-area: popup-kcal;
+}
+
+.popup-buttons {
+	grid-area: popup-buttons;
+    justify-content: space-evenly;
+
+}
+.close{
+    background-color: var(--color-red);
+	color: var(--color-white);
+}
+.close:hover{
+    background-color: var(--color-white);
+    color: var(--color-red);
+
+}
+
+#popup-proteins{
+    border: 0.1rem var(--color-red) solid;
+    color: var(--color-red);
+}
+
+#popup-carbs{
+    border: 0.1rem var(--color-brown) solid;
+    color: var(--color-brown);
+}
+
+#popup-fats{
+    border: 0.1rem var(--color-orange) solid;
+    color: var(--color-orange);
+}
+#popup-calories{
+    border: 0.1rem var(--color-green) solid;
+    color: var(--color-green);
+}
+
