@@ -62,7 +62,7 @@ h2 {
 }
 .button {
 	width: 33%;
-	background-color: var(--color-green);
+	background-color: var(--color-dark-green);
 	color: var(--color-white);
 	border-radius: 1rem;
 	border: none;
@@ -110,16 +110,18 @@ h2 {
 }
 .prev-button {
 	grid-area: prev-button;
+	text-decoration: none;
 }
 
-.prev-button > img {
+.prev-button img {
 	height: 15%;
 }
 
 .next-button {
 	grid-area: next-button;
+	text-decoration: none;
 }
-.next-button > img {
+.next-button img {
 	height: 15%;
 }
 .item {
@@ -131,8 +133,8 @@ h2 {
 
 	border-radius: 1rem;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	grid-template-rows: 0.3fr 0.66fr;
+	grid-template-columns: 1fr 0.3fr 0.3fr 0.3fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
 	gap: 1rem 1rem;
 	grid-template-areas:
 		"food-icon food-icon food-label .. . . . food-close"
@@ -146,9 +148,12 @@ h2 {
 }
 
 .food-icon {
-	width: 66%;
 	grid-area: food-icon;
-	padding: 1rem;
+}
+.food-icon > img {
+	width: 100%;
+	height: 100%;
+	border-radius: 1rem;
 }
 .food-text {
 	grid-area: food-text;
@@ -190,23 +195,39 @@ h2 {
 	color: var(--color-orange);
 	background-color: var(--color-dark-gray);
 }
+.calories-tracking-label {
+	width: 100%;
+	justify-content: space-between;
+	font-size: 2rem;
+}
+.tracking-label-container {
+	width: 25%;
+}
+.remaining-calories {
+	color: var(--color-red);
+}
+.burned-calories {
+	color: var(--color-blue);
+}
+.total-calories {
+	color: var(--color-green);
+}
+
 .tracked-cal {
 	width: 100%;
-	margin-left: 0.5rem;
-	margin-right: 0.5rem;
 	background-color: var(--color-dark-gray);
 	overflow: hidden;
 	border-radius: 1rem;
 	border: 0.1rem var(--color-red) solid;
 }
 .tracked-cal-inner {
-	width: 25%;
+	width: 0%;
 	height: 100%;
-	padding-left: 1rem;
 	background-color: var(--color-dark-red);
 	white-space: nowrap;
-	padding: 0.5rem;
+	padding: 1rem 0;
 	transition: 200ms linear;
+	text-align: center;
 }
 .tracked-workout {
 	width: 100%;
@@ -218,12 +239,12 @@ h2 {
 	border: 0.1rem var(--color-blue) solid;
 }
 .tracked-workout-inner {
-	width: 12.5%;
+	width: 0%;
 	height: 100%;
 	padding-left: 1rem;
 	background-color: var(--color-dark-blue);
 	text-overflow: clip;
 	white-space: nowrap;
-	padding: 0.5rem;
+	padding: 0.5rem 0;
 	transition: 200ms linear;
 }

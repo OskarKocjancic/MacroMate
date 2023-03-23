@@ -24,16 +24,23 @@
 }
 .overlay:target {
 	visibility: visible;
-	opacity: 1; 
+	opacity: 1;
 }
 
+#popup0 {
+	z-index: 4;
+	transition: opacity 2000ms;
+	visibility: visible;
+	pointer-events: none;
+	background-image: url(img/macro-mate-bg.svg);
+}
 .popup {
 	margin: 2.5rem auto;
-
 	background: var(--color-dark);
 	border-radius: 1rem;
 	width: 30%;
 	height: 50%;
+	padding: 1rem;
 	position: relative;
 	transition: all 200ms ease-in-out;
 	display: grid;
@@ -49,6 +56,30 @@
 		"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
 }
 
+.popup2 {
+	margin: 2.5rem auto;
+	background: var(--color-dark);
+	border-radius: 1rem;
+	width: 30%;
+	height: 50%;
+	padding: 1rem;
+	position: relative;
+	transition: all 200ms ease-in-out;
+	display: grid;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+	gap: 0px 0px;
+	grid-auto-flow: row;
+	grid-template-areas:
+		"popup-title popup-title popup-title popup-title popup-title"
+		"popup-label1 popup-label1 popup-select popup-select popup-select"
+		"popup-label2 popup-label2 popup-duration popup-duration popup-duration"
+		"popup-label3 popup-label3 popup-age popup-age popup-age"
+		"popup-label4 popup-label4 popup-weight popup-weight popup-weight"
+		"popup-label5 popup-label5 popup-sex popup-sex popup-sex"
+		"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
+}
 
 .label {
 	text-align: center;
@@ -71,11 +102,43 @@
 	grid-area: popup-label2;
 }
 
+.popup-label3 {
+	grid-area: popup-label3;
+}
+.popup-label4 {
+	grid-area: popup-label4;
+}
+.popup-label5 {
+	grid-area: popup-label5;
+}
+
 .popup-macro {
 	grid-area: popup-macro;
-    justify-content: space-evenly;
+	justify-content: space-evenly;
 }
+.popup-select {
+	grid-area: popup-select;
+}
+
+.popup-duration {
+	grid-area: popup-duration;
+}
+.popup-age {
+	grid-area: popup-age;
+}
+
+.popup-kcal {
+	grid-area: popup-kcal;
+}
+.popup-sex {
+	grid-area: popup-sex;
+}
+.popup-weight {
+	grid-area: popup-weight;
+}
+
 input[type="text"] {
+	width: 50%;
 	background-color: var(--color-darker);
 	border: none;
 	border-radius: 1rem;
@@ -84,55 +147,60 @@ input[type="text"] {
 input[type="text"]:focus {
 	outline: none;
 }
+
 input[type="number"] {
+	width: 50%;
 	background-color: var(--color-darker);
 	appearance: textfield;
-    border: none;
+	border: none;
 	border-radius: 1rem;
 	padding: 0.5rem;
 }
 input[type="number"]:focus {
 	outline: none;
 }
-.popup-label3 {
-	grid-area: popup-label3;
+
+input[type="radio"] {
+	accent-color: var(--color-blue);
 }
 
-.popup-kcal {
-	grid-area: popup-kcal;
+select {
+	background-color: var(--color-darker);
+	appearance: textfield;
+	border: none;
+	border-radius: 1rem;
+	padding: 0.5rem;
+	width: 50%;
 }
 
 .popup-buttons {
 	grid-area: popup-buttons;
-    justify-content: space-evenly;
-
+	justify-content: space-evenly;
 }
-.close{
-    background-color: var(--color-red);
+.close {
+	background-color: var(--color-red);
 	color: var(--color-white);
 }
-.close:hover{
-    background-color: var(--color-white);
-    color: var(--color-red);
-
+.close:hover {
+	background-color: var(--color-white);
+	color: var(--color-red);
 }
 
-#popup-proteins{
-    border: 0.1rem var(--color-red) solid;
-    color: var(--color-red);
+#popup-proteins {
+	border: 0.1rem var(--color-red) solid;
+	color: var(--color-red);
 }
 
-#popup-carbs{
-    border: 0.1rem var(--color-brown) solid;
-    color: var(--color-brown);
+#popup-carbs {
+	border: 0.1rem var(--color-brown) solid;
+	color: var(--color-brown);
 }
 
-#popup-fats{
-    border: 0.1rem var(--color-orange) solid;
-    color: var(--color-orange);
+#popup-fats {
+	border: 0.1rem var(--color-orange) solid;
+	color: var(--color-orange);
 }
-#popup-calories{
-    border: 0.1rem var(--color-green) solid;
-    color: var(--color-green);
+#popup-calories {
+	border: 0.1rem var(--color-green) solid;
+	color: var(--color-green);
 }
-
