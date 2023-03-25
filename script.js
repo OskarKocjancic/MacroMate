@@ -18,7 +18,7 @@ function addWorkout() {
 	else kcal_burned = (_duration * (0.6309 * heart_rate + 0.1988 * _weight + 0.2017 * _age - 55.0969)) / 4.184;
 	curr_day.work_counter += parseInt(kcal_burned);
 
-	info = { age: parseInt(_age), sex: _sex.id, weight_kg: parseInt(_weight) };
+	info = { age: parseFloat(_age), sex: _sex.id, weight_kg: parseFloat(_weight) , duration : parseFloat(_duration)};
 	localStorage.setItem("info", JSON.stringify(info));
 	updateDays();
 	setCaloriesBar(curr_day.kcal_counter, curr_day.work_counter, curr_day.max);
@@ -75,20 +75,20 @@ function showPopup(popupID) {
 	popup.style.opacity = 1;
 }
 function loadInfo() {
-	console.log("loading info");
 	let age = document.getElementById("popup-age");
 	let duration = document.getElementById("popup-duration");
 	let weight = document.getElementById("popup-weight");
-
+	
+	
 	info = JSON.parse(localStorage.getItem("info"));
+	console.log(info);
 	if (info == null) {
 		document.getElementById("Male").checked = true;
 		return;
 	} else {
 		age.value = info.age;
 		duration.value = info.duration;
-		weight.value = info.weight;
-		console.log(info);
+		weight.value = info.weight_kg;
 		document.getElementById(info.sex).checked = true;
 	}
 }
@@ -236,6 +236,31 @@ function changeDay(next) {
 		console.log(error);
 	}
 }
+function drawMacroPie() {
+	let canvas = document.querySelector(".macro-pie");
+
+	let ctx = canvas.getContext("2d");
+
+	const total = curr_day.carbs_counter + curr_day.fats_counter + curr_day.proteins_counter;
+	if (total == 0) ctx.clearRect(0, 0, canvas.width, canvas.height);
+	const values = [
+		{ sum: curr_day.carbs_counter, shade: "#e5a478" },
+		{ sum: curr_day.fats_counter, shade: "#f0d582" },
+		{ sum: curr_day.proteins_counter, shade: "#e76666" },
+	];
+	let currentAngle = 0;
+
+	for (let value of values) {
+		let portionAngle = (value.sum / total) * 2 * Math.PI;
+		ctx.beginPath();
+		ctx.arc(500, 500, 1000, currentAngle, currentAngle + portionAngle);
+		currentAngle += portionAngle;
+		ctx.lineTo(500, 500);
+
+		ctx.fillStyle = value.shade;
+		ctx.fill();
+	}
+}
 
 function updateGoal() {
 	curr_day.max = parseInt(document.querySelector(".total-calories").value);
@@ -290,9 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 		localStorage.setItem("days", JSON.stringify(days));
 	}
-	console.log(days);
 	curr_day = days[days.length - 1];
-	console.log(curr_day);
 
 	if (curr_day.date < getDateString()) {
 		_day = {
@@ -318,28 +341,3 @@ document.addEventListener("DOMContentLoaded", () => {
 	loadItems();
 });
 
-function drawMacroPie() {
-	let canvas = document.querySelector(".macro-pie");
-
-	let ctx = canvas.getContext("2d");
-
-	const total = curr_day.carbs_counter + curr_day.fats_counter + curr_day.proteins_counter;
-	if (total == 0) ctx.clearRect(0, 0, canvas.width, canvas.height);
-	const values = [
-		{ sum: curr_day.carbs_counter, shade: "#e5a478" },
-		{ sum: curr_day.fats_counter, shade: "#f0d582" },
-		{ sum: curr_day.proteins_counter, shade: "#e76666" },
-	];
-	let currentAngle = 0;
-
-	for (let value of values) {
-		let portionAngle = (value.sum / total) * 2 * Math.PI;
-		ctx.beginPath();
-		ctx.arc(500, 500, 1000, currentAngle, currentAngle + portionAngle);
-		currentAngle += portionAngle;
-		ctx.lineTo(500, 500);
-
-		ctx.fillStyle = value.shade;
-		ctx.fill();
-	}
-}

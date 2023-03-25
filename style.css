@@ -104,7 +104,7 @@ select {
 	padding: 1rem;
 	text-align: center;
 }
-.close{
+.close {
 	padding: 0.25rem;
 }
 .button:hover {
@@ -135,13 +135,16 @@ select {
 		"goals-up goals-up goals-up goals-right"
 		"goals-down goals-down goals-down goals-right";
 }
-
 .Items {
 	grid-area: Items;
 	overflow: scroll;
+	scrollbar-width: none;
 	background-color: var(--color-gray);
 	border-radius: 1rem;
 	padding: 1rem;
+}
+.Items::-webkit-scrollbar {
+	display: none;
 }
 
 .item {
@@ -160,7 +163,7 @@ select {
 		"food-icon food-icon food-label . . . . food-close"
 		"food-icon food-icon food-kcal food-kcal food-text food-text food-text food-text";
 }
-.item  a {
+.item a {
 	font-size: 1;
 }
 
@@ -316,9 +319,9 @@ select {
 		font-size: 0.8rem;
 		background-color: var(--color-dark-gray);
 		border: var(--color-light-gray) 0.1rem solid;
-	
+
 		border-radius: 1rem;
-	
+
 		display: grid;
 		grid-template-columns: 1fr 0.3fr 0.3fr 0.3fr 1fr 1fr 1fr 1fr;
 		grid-template-rows: 1fr 1fr;
@@ -350,5 +353,3 @@ select {
 		padding: 1rem;
 	}
 }
-
-
