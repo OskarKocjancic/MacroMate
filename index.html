@@ -10,8 +10,13 @@
 	</head>
 	<body>
 		<div class="page">
-			<a class="flex-center prev-button" href="#" onclick="setUp(false)"><img src="img/arrow-left.svg" alt="" />Previous day</a>
-			<a class="flex-center next-button" href="#" onclick="setUp(true)">Next day<img src="img/arrow-right.svg" alt="" /></a>
+			<div class="flex-center prev-button">
+				<a class="button" href="javascript:void(0)" onclick="changeDay(false)">&leftarrow;</a>
+			</div>
+			<div class="flex-center next-button">
+				<a class="button" href="javascript:void(0)" onclick="changeDay(true)">&rightarrow;</a>
+			</div>
+
 			<div class="Title date"></div>
 			<div class="flex-center-column Goals">
 				<div class="flex-center calories-tracking-label">
@@ -21,36 +26,25 @@
 					</div>
 					<div class="flex-center-column tracking-label-container">
 						Burned
-						<div class="burned-calories">0</div>
+						<input class="burned-calories" type="number" name="" id="" value="0" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1',updateGoal());" />
 					</div>
 					<div class="flex-center-column tracking-label-container">
-						Total
-						<div class="total-calories">0</div>
+						Goal
+						<input class="total-calories" type="number" name="" id="" value="0" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1',updateGoal());" />
 					</div>
 				</div>
 				<div class="tracked-cal"><div class="tracked-cal-inner"></div></div>
+				<canvas class="macro-pie" width="1000" height="1000"></canvas>
 			</div>
 			<div class="flex-center button-container">
-				<a class="button" href="#popup1">Add calories</a>
-				<a class="button" href="#popup2">Add workout</a>
+				<a class="button" href="javascript:void(0)" onclick="showPopup('popup1')">Add calories</a>
+				<a class="button" href="javascript:void(0)" onclick="showPopup('popup2')">Add workout</a>
 			</div>
-			<div id="items" class="flex-center-column Items">
-				<!-- 				<div class="item flex-center">
-					<div class="food-label">Burger</div>
-					<div class="flex-center food-icon"><img src="img/food1.svlg" alt="food1" /></div>
-					<div class="food-kcal">1000 Kcal</div>
-					<div class="flex-center food-text">
-						<div class="widget proteins">25g Protein</div>
-						<div class="widget carbs">50g Carbs</div>
-						<div class="widget fats">25g Fats</div>
-					</div>
-					<div class="flex-center food-close" ><a class="button close" href="#">Remove</a></div>
-				</div> -->
-			</div>
+			<div id="items" class="flex-center-column Items"></div>
 
-			<div id="popup0" class="overlay">
+			<!-- 			<div id="popup0" class="overlay">
 				<img src="img/macro-mate-bg.svg" alt="" />
-			</div>
+			</div> -->
 
 			<div id="popup1" class="overlay">
 				<div class="popup">
@@ -62,12 +56,24 @@
 						<input id="popup-fats" placeholder="Enter fats:" type="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
 					</div>
 					<div class="flex-center-column popup-kcal"><input id="popup-calories" placeholder="Enter calories:" type="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" /></div>
+					<div class="flex-center-column popup-select">
+						<select name="popup-category" id="popup-category">
+							<option value="img/dairy.jpg">Dairy</option>
+							<option value="img/fats.jpg">Fats</option>
+							<option value="img/fruits.jpg">Fruits</option>
+							<option value="img/grains.jpg">Grains</option>
+							<option value="img/meats.jpg">Meats</option>
+							<option value="img/vegetables.jpg">Vegetables</option>
+						</select>
+					</div>
+
 					<div class="flex-center-column label popup-label1">Name</div>
 					<div class="flex-center-column label popup-label2">Macros</div>
 					<div class="flex-center-column label popup-label3">Calories</div>
+					<div class="flex-center-column label popup-label4">Category</div>
 					<div class="flex-center popup-buttons">
-						<a class="button" onclick="addCalories()" href="#">Add</a>
-						<a class="button close" href="#">Close</a>
+						<a class="button" href="javascript:void(0)" onclick="addCalories(),closePopup('popup1')">Add</a>
+						<a class="button close" href="javascript:void(0)" onclick="closePopup('popup1')">Close</a>
 					</div>
 				</div>
 			</div>
@@ -102,8 +108,8 @@
 					<div class="flex-center-column label popup-label4">Weight</div>
 					<div class="flex-center-column label popup-label5">Sex</div>
 					<div class="flex-center popup-buttons">
-						<a class="button" onclick="addWorkout()" href="#">Add</a>
-						<a class="button close" href="#">Close</a>
+						<a class="button" href="javascript:void(0)" onclick="addWorkout(),closePopup('popup2')">Add</a>
+						<a class="button close" href="javascript:void(0)" onclick="closePopup('popup2')">Close</a>
 					</div>
 				</div>
 			</div>

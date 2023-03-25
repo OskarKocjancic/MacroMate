@@ -22,10 +22,7 @@
 	visibility: hidden;
 	opacity: 0;
 }
-.overlay:target {
-	visibility: visible;
-	opacity: 1;
-}
+
 
 #popup0 {
 	z-index: 4;
@@ -53,6 +50,7 @@
 		"popup-label1 popup-label1 popup-name popup-name popup-name"
 		"popup-label2 popup-label2 popup-macro popup-macro popup-macro"
 		"popup-label3 popup-label3 popup-kcal popup-kcal popup-kcal"
+		"popup-label4 popup-label4 popup-select popup-select popup-select"
 		"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
 }
 
@@ -88,7 +86,6 @@
 
 .popup-title {
 	grid-area: popup-title;
-	font-size: 2rem;
 }
 .popup-name {
 	grid-area: popup-name;
@@ -135,42 +132,6 @@
 }
 .popup-weight {
 	grid-area: popup-weight;
-}
-
-input[type="text"] {
-	width: 50%;
-	background-color: var(--color-darker);
-	border: none;
-	border-radius: 1rem;
-	padding: 0.5rem;
-}
-input[type="text"]:focus {
-	outline: none;
-}
-
-input[type="number"] {
-	width: 50%;
-	background-color: var(--color-darker);
-	appearance: textfield;
-	border: none;
-	border-radius: 1rem;
-	padding: 0.5rem;
-}
-input[type="number"]:focus {
-	outline: none;
-}
-
-input[type="radio"] {
-	accent-color: var(--color-blue);
-}
-
-select {
-	background-color: var(--color-darker);
-	appearance: textfield;
-	border: none;
-	border-radius: 1rem;
-	padding: 0.5rem;
-	width: 50%;
 }
 
 .popup-buttons {

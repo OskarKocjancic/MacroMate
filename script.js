@@ -1,13 +1,13 @@
 let days;
 let curr_day;
+let info;
 
 function addWorkout() {
 	let _age = document.getElementById("popup-age").value;
 	let _duration = document.getElementById("popup-duration").value;
 	let _exercise = document.getElementById("popup-exercise").value;
 	let _weight = document.getElementById("popup-weight").value;
-	let _sex = document.querySelector('input[name="sex"]:checked').value;
-	let kcal_burned = 0;
+	let _sex = document.querySelector('input[name="sex"]:checked');
 	let heart_rate = {
 		light: 110,
 		moderate: 135,
@@ -17,6 +17,9 @@ function addWorkout() {
 	if (_sex.id == "Female") kcal_burned = (_duration * (0.4472 * heart_rate - 0.1263 * _weight + 0.074 * _age - 20.4022)) / 4.184;
 	else kcal_burned = (_duration * (0.6309 * heart_rate + 0.1988 * _weight + 0.2017 * _age - 55.0969)) / 4.184;
 	curr_day.work_counter += parseInt(kcal_burned);
+
+	info = { age: parseInt(_age), sex: _sex.id, weight_kg: parseInt(_weight) };
+	localStorage.setItem("info", JSON.stringify(info));
 	updateDays();
 	setCaloriesBar(curr_day.kcal_counter, curr_day.work_counter, curr_day.max);
 	clearPopups();
@@ -28,6 +31,7 @@ function addCalories() {
 	let _fats = document.getElementById("popup-fats").value;
 	let _kcal = document.getElementById("popup-calories").value;
 	let _name = document.getElementById("popup-name").value;
+	let _category = document.getElementById("popup-category").value;
 	max_id = -1;
 	if (isNaN(_proteins) || isNaN(_carbs) || isNaN(_fats) || isNaN(_kcal) || _name.length == 0) return;
 
@@ -35,8 +39,7 @@ function addCalories() {
 		max_id = i.id > max_id ? i.id : max_id;
 	});
 
-	let item1 = { name: _name, kcal: parseFloat(_kcal), proteins: parseFloat(_proteins), carbs: parseFloat(_carbs), fats: parseFloat(_fats), img: "img/vegetables.jpg", id: max_id + 1 };
-
+	let item1 = { name: _name, kcal: parseFloat(_kcal), proteins: parseFloat(_proteins), carbs: parseFloat(_carbs), fats: parseFloat(_fats), img: _category, id: max_id + 1 };
 
 	curr_day.item_list.push(item1);
 	curr_day.kcal_counter += item1.kcal;
@@ -49,10 +52,41 @@ function addCalories() {
 function loadItems() {
 	document.querySelector(".Items").replaceChildren();
 	console.log(curr_day);
+
 	curr_day.item_list.forEach((i) => {
 		document.querySelector(".Items").appendChild(createItemElement(i));
 	});
 	setCaloriesBar(curr_day.kcal_counter, curr_day.work_counter, curr_day.max);
+	drawMacroPie();
+}
+
+function closePopup(popupID) {
+	let popup = document.getElementById(popupID);
+	popup.style.visibility = "hidden";
+	popup.style.opacity = 0;
+}
+function showPopup(popupID) {
+	let popup = document.getElementById(popupID);
+	popup.style.visibility = "visible";
+	popup.style.opacity = 1;
+}
+function loadInfo() {
+	console.log("loading info");
+	let age = document.getElementById("popup-age");
+	let duration = document.getElementById("popup-duration");
+	let weight = document.getElementById("popup-weight");
+
+	info = JSON.parse(localStorage.getItem("info"));
+	if (info == null) {
+		document.getElementById("Male").checked = true;
+		return;
+	} else {
+		age.value = info.age;
+		duration.value = info.duration;
+		weight.value = info.weight;
+		console.log(info);
+		document.getElementById(info.sex).checked = true;
+	}
 }
 
 function updateDays() {
@@ -114,11 +148,11 @@ function createItemElement(item) {
 	new_item.appendChild(tmp);
 
 	let food_text = document.createElement("div");
-	food_text.className = "flex-center food-text";
+	food_text.className = "food-text";
 
 	tmp = document.createElement("div");
 	tmp.className = "widget proteins";
-	tmp.innerHTML = item.proteins + "g Protein";
+	tmp.innerHTML = item.proteins + "g Proteins";
 	food_text.appendChild(tmp);
 
 	tmp = document.createElement("div");
@@ -161,8 +195,8 @@ function setCaloriesBar(kcal, work, max) {
 	let total_calories = document.querySelector(".total-calories");
 
 	remaining_calories.innerHTML = max - kcal + work;
-	burned_calories.innerHTML = work;
-	total_calories.innerHTML = max;
+	burned_calories.value = work;
+	total_calories.value = max;
 	//let work_bar = document.querySelector(".tracked-workout-inner");
 
 	/* 	kcal_bar.innerHTML = "Calories consumed: " + kcal;
@@ -177,7 +211,7 @@ function getDateString() {
 	return result;
 }
 
-function setUp(next) {
+function changeDay(next) {
 	let l;
 	for (let i = 0; i < days.length; i++) {
 		if (days[i].date == curr_day.date) l = i;
@@ -193,58 +227,110 @@ function setUp(next) {
 		console.log(error);
 	}
 }
+
+function updateGoal() {
+	curr_day.max = parseInt(document.querySelector(".total-calories").value);
+	curr_day.work_counter = parseInt(document.querySelector(".burned-calories").value);
+	setCaloriesBar(curr_day.kcal_counter, curr_day.work_counter, curr_day.max);
+}
 document.addEventListener("DOMContentLoaded", () => {
 	days = JSON.parse(localStorage.getItem("days"));
+
 	if (days == null) {
 		days = [];
-
-		let _day = {
+		days.push({
 			date: "2023/3/21",
 			item_list: [
-				{ name: "one", kcal: 100, proteins: 44, carbs: 44, fats: 233, img: "img/vegetables.jpg", id: 0 },
-				{ name: "two", kcal: 200, proteins: 44, carbs: 44, fats: 233, img: "img/fruits.jpg", id: 0 },
-				{ name: "three", kcal: 300, proteins: 44, carbs: 44, fats: 233, img: "img/meats.jpg", id: 0 },
+				{ name: "one", kcal: 200, proteins: 10, carbs: 20, fats: 5, img: "img/fruits.jpg", id: 0 },
+				{ name: "two", kcal: 200, proteins: 10, carbs: 20, fats: 5, img: "img/fruits.jpg", id: 1 },
 			],
-			kcal_counter: 600,
+			kcal_counter: 400,
 			work_counter: 0,
+			proteins_counter: 20,
+			carbs_counter: 40,
+			fats_counter: 10,
 			max: 1111,
-		};
-		curr_day = _day;
-		days.push(curr_day);
-		_day = {
+		});
+		days.push({
 			date: "2023/3/22",
 			item_list: [
-				{ name: "one", kcal: 100, proteins: 44, carbs: 44, fats: 233, img: "img/vegetables.jpg", id: 0 },
-				{ name: "two", kcal: 200, proteins: 44, carbs: 44, fats: 233, img: "img/fruits.jpg", id: 0 },
-				{ name: "three", kcal: 300, proteins: 44, carbs: 44, fats: 233, img: "img/meats.jpg", id: 0 },
+				{ name: "one", kcal: 100, proteins: 10, carbs: 30, fats: 40, img: "img/vegetables.jpg", id: 0 },
+				{ name: "two", kcal: 200, proteins: 10, carbs: 30, fats: 40, img: "img/fruits.jpg", id: 1 },
+				{ name: "three", kcal: 300, proteins: 10, carbs: 30, fats: 40, img: "img/meats.jpg", id: 2 },
 			],
 			kcal_counter: 600,
 			work_counter: 0,
+			proteins_counter: 30,
+			carbs_counter: 90,
+			fats_counter: 120,
 			max: 2222,
-		};
-		curr_day = _day;
-		days.push(curr_day);
+		});
+		days.push({
+			date: "2023/3/23",
+			item_list: [
+				{ name: "one", kcal: 100, proteins: 12, carbs: 20, fats: 0, img: "img/vegetables.jpg", id: 0 },
+				{ name: "two", kcal: 200, proteins: 12, carbs: 20, fats: 0, img: "img/fruits.jpg", id: 1 },
+				{ name: "three", kcal: 300, proteins: 12, carbs: 20, fats: 0, img: "img/meats.jpg", id: 2 },
+			],
+			kcal_counter: 600,
+			work_counter: 0,
+			proteins_counter: 36,
+			carbs_counter: 60,
+			fats_counter: 0,
+			max: 3333,
+		});
+		localStorage.setItem("days", JSON.stringify(days));
+	}
+	console.log(days);
+	curr_day = days[days.length - 1];
+	console.log(curr_day);
+
+	if (curr_day.date < getDateString()) {
 		_day = {
 			date: getDateString(),
 			item_list: [
-				{ name: "one", kcal: 100, proteins: 44, carbs: 44, fats: 233, img: "img/vegetables.jpg", id: 0 },
-				{ name: "two", kcal: 200, proteins: 44, carbs: 44, fats: 233, img: "img/fruits.jpg", id: 0 },
-				{ name: "three", kcal: 300, proteins: 44, carbs: 44, fats: 233, img: "img/meats.jpg", id: 0 },
+				{ name: "one", kcal: 100, proteins: 10, carbs: 10, fats: 10, img: "img/vegetables.jpg", id: 0 },
+				{ name: "two", kcal: 200, proteins: 20, carbs: 10, fats: 10, img: "img/fruits.jpg", id: 1 },
+				{ name: "three", kcal: 300, proteins: 30, carbs: 20, fats: 10, img: "img/meats.jpg", id: 2 },
 			],
 			kcal_counter: 600,
 			work_counter: 0,
+			proteins_counter: 60,
+			carbs_counter: 40,
+			fats_counter: 30,
 			max: 3333,
 		};
 		curr_day = _day;
 		days.push(curr_day);
 		localStorage.setItem("days", JSON.stringify(days));
-		/* 	
-		day.item_list.push({ name: "oskar", kcal: 1231, proteins: 44, carbs: 55, fats: 6, img: "img/food1.svg" });
-		day.item_list.push({ name: "oskar", kcal: 1231, proteins: 44, carbs: 55, fats: 6, img: "img/food1.svg" });
-		day.item_list.push({ name: "oskar", kcal: 1231, proteins: 44, carbs: 55, fats: 6, img: "img/food1.svg" }); */
 	}
 
-	curr_day = days[days.length - 1];
 	document.querySelector(".date").innerHTML = curr_day.date;
 	loadItems();
 });
+
+function drawMacroPie() {
+	let canvas = document.querySelector(".macro-pie");
+
+	let ctx = canvas.getContext("2d");
+
+	const total = curr_day.carbs_counter + curr_day.fats_counter + curr_day.proteins_counter;
+	const values = [
+		{ sum: curr_day.carbs_counter, shade: "#e5a478" },
+		{ sum: curr_day.fats_counter, shade: "#f0d582" },
+		{ sum: curr_day.proteins_counter, shade: "#e76666" },
+	];
+	let currentAngle = 0;
+
+	for (let value of values) {
+		let portionAngle = (value.sum / total) * 2 * Math.PI;
+		ctx.beginPath();
+		ctx.arc(500, 500, 1000, currentAngle, currentAngle + portionAngle);
+		currentAngle += portionAngle;
+		ctx.lineTo(500, 500);
+
+		ctx.fillStyle = value.shade;
+		ctx.fill();
+	}
+
+}
