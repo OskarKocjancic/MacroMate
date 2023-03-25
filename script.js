@@ -43,8 +43,12 @@ function addCalories() {
 
 	curr_day.item_list.push(item1);
 	curr_day.kcal_counter += item1.kcal;
+	curr_day.proteins_counter += item1.proteins;
+	curr_day.carbs_counter += item1.carbs;
+	curr_day.fats_counter += item1.fats;
 	updateDays();
 	setCaloriesBar(curr_day.kcal_counter, curr_day.work_counter, curr_day.max);
+	drawMacroPie();
 	items.appendChild(createItemElement(item1));
 	clearPopups();
 }
@@ -109,9 +113,14 @@ function removeItem(id) {
 		}
 	}
 	curr_day.kcal_counter -= curr_day.item_list[l].kcal;
+	curr_day.proteins_counter -= curr_day.item_list[l].proteins;
+	curr_day.fats_counter -= curr_day.item_list[l].fats;
+	curr_day.carbs_counter -= curr_day.item_list[l].carbs;
+
 	curr_day.item_list.splice(l, 1);
 	updateDays();
 	setCaloriesBar(curr_day.kcal_counter, curr_day.work_counter, curr_day.max);
+	drawMacroPie();
 }
 
 function createItemElement(item) {
@@ -315,6 +324,7 @@ function drawMacroPie() {
 	let ctx = canvas.getContext("2d");
 
 	const total = curr_day.carbs_counter + curr_day.fats_counter + curr_day.proteins_counter;
+	if (total == 0) ctx.clearRect(0, 0, canvas.width, canvas.height);
 	const values = [
 		{ sum: curr_day.carbs_counter, shade: "#e5a478" },
 		{ sum: curr_day.fats_counter, shade: "#f0d582" },
@@ -332,5 +342,4 @@ function drawMacroPie() {
 		ctx.fillStyle = value.shade;
 		ctx.fill();
 	}
-
 }

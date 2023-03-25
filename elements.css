@@ -23,7 +23,6 @@
 	opacity: 0;
 }
 
-
 #popup0 {
 	z-index: 4;
 	transition: opacity 2000ms;
@@ -32,12 +31,10 @@
 	background-image: url(img/macro-mate-bg.svg);
 }
 .popup {
-	margin: 2.5rem auto;
 	background: var(--color-dark);
-	border-radius: 1rem;
-	width: 30%;
-	height: 50%;
-	padding: 1rem;
+	width: 100%;
+	height: 100%;
+	padding: 5rem 0;
 	position: relative;
 	transition: all 200ms ease-in-out;
 	display: grid;
@@ -55,15 +52,12 @@
 }
 
 .popup2 {
-	margin: 2.5rem auto;
 	background: var(--color-dark);
-	border-radius: 1rem;
-	width: 30%;
-	height: 50%;
-	padding: 1rem;
+	width: 100%;
+	height: 100%;
+	padding: 5rem 0;
 	position: relative;
 	transition: all 200ms ease-in-out;
-	display: grid;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -138,6 +132,9 @@
 	grid-area: popup-buttons;
 	justify-content: space-evenly;
 }
+.popup-buttons > a {
+	padding: 1rem;
+}
 .close {
 	background-color: var(--color-red);
 	color: var(--color-white);
@@ -164,4 +161,105 @@
 #popup-calories {
 	border: 0.1rem var(--color-green) solid;
 	color: var(--color-green);
+}
+
+/* Tablet */
+@media only screen and (min-width: 600px) {
+	.popup {
+		margin: 2.5rem auto;
+		background: var(--color-dark);
+		border-radius: 1rem;
+		width: 30%;
+		height: 50%;
+		padding: 1rem;
+		position: relative;
+		transition: all 200ms ease-in-out;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+		gap: 0px 0px;
+		grid-auto-flow: row;
+		grid-template-areas:
+			"popup-title popup-title popup-title popup-title popup-title"
+			"popup-label1 popup-label1 popup-name popup-name popup-name"
+			"popup-label2 popup-label2 popup-macro popup-macro popup-macro"
+			"popup-label3 popup-label3 popup-kcal popup-kcal popup-kcal"
+			"popup-label4 popup-label4 popup-select popup-select popup-select"
+			"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
+	}
+
+	.popup2 {
+		margin: 2.5rem auto;
+		background: var(--color-dark);
+		border-radius: 1rem;
+		width: 30%;
+		height: 50%;
+		padding: 1rem;
+		position: relative;
+		transition: all 200ms ease-in-out;
+		display: grid;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+		gap: 0px 0px;
+		grid-auto-flow: row;
+		grid-template-areas:
+			"popup-title popup-title popup-title popup-title popup-title"
+			"popup-label1 popup-label1 popup-select popup-select popup-select"
+			"popup-label2 popup-label2 popup-duration popup-duration popup-duration"
+			"popup-label3 popup-label3 popup-age popup-age popup-age"
+			"popup-label4 popup-label4 popup-weight popup-weight popup-weight"
+			"popup-label5 popup-label5 popup-sex popup-sex popup-sex"
+			"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
+	}
+}
+/* Desktop */
+@media only screen and (min-width: 768px) {
+	.popup {
+		margin: 2.5rem auto;
+		background: var(--color-dark);
+		border-radius: 1rem;
+		width: 30%;
+		height: 50%;
+		padding: 1rem;
+		position: relative;
+		transition: all 200ms ease-in-out;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+		gap: 0px 0px;
+		grid-auto-flow: row;
+		grid-template-areas:
+			"popup-title popup-title popup-title popup-title popup-title"
+			"popup-label1 popup-label1 popup-name popup-name popup-name"
+			"popup-label2 popup-label2 popup-macro popup-macro popup-macro"
+			"popup-label3 popup-label3 popup-kcal popup-kcal popup-kcal"
+			"popup-label4 popup-label4 popup-select popup-select popup-select"
+			"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
+	}
+
+	.popup2 {
+		margin: 2.5rem auto;
+		background: var(--color-dark);
+		border-radius: 1rem;
+		width: 30%;
+		height: 50%;
+		padding: 1rem;
+		position: relative;
+		transition: all 200ms ease-in-out;
+		display: grid;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+		gap: 0px 0px;
+		grid-auto-flow: row;
+		grid-template-areas:
+			"popup-title popup-title popup-title popup-title popup-title"
+			"popup-label1 popup-label1 popup-select popup-select popup-select"
+			"popup-label2 popup-label2 popup-duration popup-duration popup-duration"
+			"popup-label3 popup-label3 popup-age popup-age popup-age"
+			"popup-label4 popup-label4 popup-weight popup-weight popup-weight"
+			"popup-label5 popup-label5 popup-sex popup-sex popup-sex"
+			"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
+	}
 }

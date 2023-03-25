@@ -7,15 +7,16 @@
 		<title>MacroMate</title>
 		<link rel="stylesheet" href="style.css" />
 		<link rel="stylesheet" href="elements.css" />
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	</head>
 	<body>
 		<div class="page">
-			<div class="flex-center prev-button">
+			<!-- 			<div class="flex-center prev-button">
 				<a class="button" href="javascript:void(0)" onclick="changeDay(false)">&leftarrow;</a>
 			</div>
 			<div class="flex-center next-button">
 				<a class="button" href="javascript:void(0)" onclick="changeDay(true)">&rightarrow;</a>
-			</div>
+			</div> -->
 
 			<div class="Title date"></div>
 			<div class="flex-center-column Goals">
@@ -37,8 +38,10 @@
 				<canvas class="macro-pie" width="1000" height="1000"></canvas>
 			</div>
 			<div class="flex-center button-container">
+				<a class="button" href="javascript:void(0)" onclick="changeDay(false)">◁</a>
 				<a class="button" href="javascript:void(0)" onclick="showPopup('popup1')">Add calories</a>
 				<a class="button" href="javascript:void(0)" onclick="showPopup('popup2')">Add workout</a>
+				<a class="button" href="javascript:void(0)" onclick="changeDay(true)">▷</a>
 			</div>
 			<div id="items" class="flex-center-column Items"></div>
 
