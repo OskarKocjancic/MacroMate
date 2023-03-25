@@ -23,13 +23,7 @@
 	opacity: 0;
 }
 
-#popup0 {
-	z-index: 4;
-	transition: opacity 2000ms;
-	visibility: visible;
-	pointer-events: none;
-	background-image: url(img/macro-mate-bg.svg);
-}
+
 .popup {
 	background: var(--color-dark);
 	width: 100%;
@@ -261,5 +255,17 @@
 			"popup-label4 popup-label4 popup-weight popup-weight popup-weight"
 			"popup-label5 popup-label5 popup-sex popup-sex popup-sex"
 			"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
+	}
+	#popup0 {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 4;
+		visibility: visible;
+		pointer-events: none;
+		background-image: url(/img/macro-mate-bg.svg);
+		background-size: cover;
 	}
 }

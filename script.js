@@ -336,7 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		days.push(curr_day);
 		localStorage.setItem("days", JSON.stringify(days));
 	}
-
+	$("#popup0").delay(200).fadeOut("slow");
 	document.querySelector(".date").innerHTML = curr_day.date;
 	loadItems();
 });
