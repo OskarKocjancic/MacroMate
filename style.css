@@ -93,8 +93,15 @@ select {
 }
 .button-container {
 	grid-area: buttons;
-	justify-content: space-evenly;
+	border-radius: 1rem;
 }
+
+.button-container > a {
+	padding: 0.5rem;
+	border-radius: 0;
+	height: 100%;
+}
+
 .button {
 	background-color: var(--color-dark-green);
 	color: var(--color-white);
@@ -103,6 +110,12 @@ select {
 	text-decoration: none;
 	padding: 1rem;
 	text-align: center;
+}
+.next-day {
+	border-radius: 0 1rem 1rem 0 !important ;
+}
+.prev-day {
+	border-radius: 1rem 0 0 1rem !important ;
 }
 .close {
 	padding: 0.25rem;
@@ -295,13 +308,13 @@ select {
 	}
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1070px) {
 	.page {
 		width: 100%;
 		height: 100vh;
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr [Ite] 1fr 1fr 1fr;
-		grid-template-rows: 0.25fr 0.25fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: 0.25fr 0.25fr 1fr 1fr 1fr 0.25fr;
 		gap: 1rem 0;
 		grid-auto-flow: row;
 		grid-template-areas:
@@ -319,9 +332,7 @@ select {
 		font-size: 0.8rem;
 		background-color: var(--color-dark-gray);
 		border: var(--color-light-gray) 0.1rem solid;
-
 		border-radius: 1rem;
-
 		display: grid;
 		grid-template-columns: 1fr 0.3fr 0.3fr 0.3fr 1fr 1fr 1fr 1fr;
 		grid-template-rows: 1fr 1fr;
@@ -337,7 +348,6 @@ select {
 		border-radius: 1rem;
 		border: none;
 		text-decoration: none;
-		padding: 0.5rem;
 		text-align: center;
 	}
 
@@ -348,8 +358,6 @@ select {
 
 	.button-container {
 		grid-area: buttons;
-		width: 100%;
-		justify-content: space-evenly;
-		padding: 1rem;
+		padding: 0.5rem;
 	}
 }

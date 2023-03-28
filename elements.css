@@ -23,7 +23,6 @@
 	opacity: 0;
 }
 
-
 .popup {
 	background: var(--color-dark);
 	width: 100%;
@@ -67,6 +66,29 @@
 		"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
 }
 
+.popup3 {
+	background: var(--color-dark);
+	width: 100%;
+	height: 100%;
+	padding: 5rem 0;
+	position: relative;
+	transition: all 200ms ease-in-out;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+	gap: 0px 0px;
+	grid-auto-flow: row;
+	grid-template-areas:
+		"popup-title popup-title popup-title popup-title popup-title"
+		"popup-label1 popup-label1 popup-select popup-select popup-select"
+		"popup-label2 popup-label2 popup-food-weight popup-food-weight popup-food-weight"
+		"popup-buttons2 popup-buttons2 popup-buttons2 popup-buttons2 popup-buttons2"
+		". . . . ."
+		"popup-title2 popup-title2 popup-title2 popup-title2 popup-title2"
+		"popup-label3 popup-label3 popup-raw-calories popup-raw-calories popup-raw-calories"
+		"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
+}
+
 .label {
 	text-align: center;
 	padding: 0.5rem;
@@ -74,6 +96,9 @@
 
 .popup-title {
 	grid-area: popup-title;
+}
+.popup-title2 {
+	grid-area: popup-title2;
 }
 .popup-name {
 	grid-area: popup-name;
@@ -121,12 +146,21 @@
 .popup-weight {
 	grid-area: popup-weight;
 }
-
+.popup-food-weight {
+	grid-area: popup-food-weight;
+}
+.popup-raw-calories {
+	grid-area: popup-raw-calories;
+}
 .popup-buttons {
 	grid-area: popup-buttons;
 	justify-content: space-evenly;
 }
-.popup-buttons > a {
+.popup-buttons2 {
+	grid-area: popup-buttons2;
+	justify-content: space-evenly;
+}
+.popup-buttons > a, .popup-buttons2 > a{
 	padding: 1rem;
 }
 .close {
@@ -192,7 +226,6 @@
 		position: relative;
 		transition: all 200ms ease-in-out;
 		display: grid;
-		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 		grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 		gap: 0px 0px;
@@ -206,6 +239,30 @@
 			"popup-label5 popup-label5 popup-sex popup-sex popup-sex"
 			"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
 	}
+	.popup3 {
+		margin: 2.5rem auto;
+		background: var(--color-dark);
+		width: 30%;
+		height: 50%;
+		padding: 1rem;
+		position: relative;
+		transition: all 200ms ease-in-out;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+		gap: 0px 0px;
+		grid-auto-flow: row;
+		grid-template-areas:
+			"popup-title popup-title popup-title popup-title popup-title"
+			"popup-label1 popup-label1 popup-select popup-select popup-select"
+			"popup-label2 popup-label2 popup-food-weight popup-food-weight popup-food-weight"
+			"popup-buttons2 popup-buttons2 popup-buttons2 popup-buttons2 popup-buttons2"
+			". . . . ."
+			"popup-title2 popup-title2 popup-title2 popup-title2 popup-title2"
+			"popup-label3 popup-label3 popup-raw-calories popup-raw-calories popup-raw-calories"
+			"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
+	}
+	
 }
 /* Desktop */
 @media only screen and (min-width: 768px) {
@@ -216,6 +273,7 @@
 		width: 30%;
 		height: 50%;
 		padding: 1rem;
+		border-radius: 1rem;
 		position: relative;
 		transition: all 200ms ease-in-out;
 		display: grid;
@@ -239,6 +297,7 @@
 		width: 30%;
 		height: 50%;
 		padding: 1rem;
+		border-radius: 1rem;
 		position: relative;
 		transition: all 200ms ease-in-out;
 		display: grid;
@@ -256,6 +315,30 @@
 			"popup-label5 popup-label5 popup-sex popup-sex popup-sex"
 			"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
 	}
+	.popup3 {
+		margin: 2.5rem auto;
+		background: var(--color-dark);
+		width: 30%;
+		height: 50%;
+		padding: 1rem;
+		border-radius: 1rem;
+		position: relative;
+		transition: all 200ms ease-in-out;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+		gap: 0px 0px;
+		grid-auto-flow: row;
+		grid-template-areas:
+			"popup-title popup-title popup-title popup-title popup-title"
+			"popup-label1 popup-label1 popup-select popup-select popup-select"
+			"popup-label2 popup-label2 popup-food-weight popup-food-weight popup-food-weight"
+			"popup-buttons2 popup-buttons2 popup-buttons2 popup-buttons2 popup-buttons2"
+			". . . . ."
+			"popup-title2 popup-title2 popup-title2 popup-title2 popup-title2"
+			"popup-label3 popup-label3 popup-raw-calories popup-raw-calories popup-raw-calories"
+			"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
+	}
 	#popup0 {
 		position: fixed;
 		top: 0;
@@ -266,6 +349,17 @@
 		visibility: visible;
 		pointer-events: none;
 		background-image: url(/img/macro-mate-bg.svg);
+		background-size: cover;
+	}
+	#popup4 {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 4;
+		visibility: visible;
+		pointer-events: none;
 		background-size: cover;
 	}
 }
