@@ -1,12 +1,13 @@
 :root {
-	--color-darker: #222326;
-	--color-dark: #373b40;
+	--color-dark-gray: #222326;
+	--color-gray: #373b40;
+	--color-light-gray: #79818c;
 	--color-green: #9be872;
 	--color-red: #e76666;
 	--color-blue: #8991e8;
-	--color-dark-red: #e76666a6;
-	--color-dark-blue: #8991e878;
-	--color-dark-green: #9be87290;
+	--color-gray-red: #e76666a6;
+	--color-gray-blue: #8991e878;
+	--color-gray-green: #9be87290;
 	--color-orange: #f0d582;
 	--color-brown: #e5a478;
 	--color-white: #f2f2f2;
@@ -17,14 +18,14 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background: var(--color-darker);
+	background: var(--color-dark-gray);
 	transition: opacity 200ms;
 	visibility: hidden;
 	opacity: 0;
 }
 
 .popup {
-	background: var(--color-dark);
+	background: var(--color-gray);
 	width: 100%;
 	height: 100%;
 	padding: 5rem 0;
@@ -45,7 +46,7 @@
 }
 
 .popup2 {
-	background: var(--color-dark);
+	background: var(--color-gray);
 	width: 100%;
 	height: 100%;
 	padding: 5rem 0;
@@ -67,7 +68,7 @@
 }
 
 .popup3 {
-	background: var(--color-dark);
+	background: var(--color-gray);
 	width: 100%;
 	height: 100%;
 	padding: 5rem 0;
@@ -75,7 +76,7 @@
 	transition: all 200ms ease-in-out;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	gap: 0px 0px;
 	grid-auto-flow: row;
 	grid-template-areas:
@@ -87,6 +88,24 @@
 		"popup-title2 popup-title2 popup-title2 popup-title2 popup-title2"
 		"popup-label3 popup-label3 popup-raw-calories popup-raw-calories popup-raw-calories"
 		"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
+}
+.popup4 {
+	background: var(--color-dark-gray);
+	width: 100%;
+	height: 100%;
+	padding: 5rem;
+	position: relative;
+	transition: all 200ms ease-in-out;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-auto-flow: row;
+	grid-template-areas:
+		"popup-label1 popup-label1"
+		"popup-img1 popup-img1"
+		"popup-label2 popup-label3"
+		"popup-img2 popup-img3"
+		"popup-buttons popup-buttons";
 }
 
 .label {
@@ -160,15 +179,35 @@
 	grid-area: popup-buttons2;
 	justify-content: space-evenly;
 }
-.popup-buttons > a, .popup-buttons2 > a{
-	padding: 1rem;
+
+.popup-img1 {
+	grid-area: popup-img1;
+}
+
+.popup-img2 {
+	grid-area: popup-img2;
+}
+
+.popup-img3 {
+	grid-area: popup-img3;
+}
+
+.popup-img4 {
+	grid-area: popup-img4;
+}
+.popup-img-inner {
+	width: 100%;
+}
+.popup-buttons > a,
+.popup-buttons2 > a {
+	padding: 0.5rem;
 }
 .close {
-	background-color: var(--color-red);
+	background: none;
 	color: var(--color-white);
 }
 .close:hover {
-	background-color: var(--color-white);
+	background: none;
 	color: var(--color-red);
 }
 
@@ -191,84 +230,11 @@
 	color: var(--color-green);
 }
 
-/* Tablet */
-@media only screen and (min-width: 600px) {
-	.popup {
-		margin: 2.5rem auto;
-		background: var(--color-dark);
-		border-radius: 1rem;
-		width: 30%;
-		height: 50%;
-		padding: 1rem;
-		position: relative;
-		transition: all 200ms ease-in-out;
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-		grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
-		gap: 0px 0px;
-		grid-auto-flow: row;
-		grid-template-areas:
-			"popup-title popup-title popup-title popup-title popup-title"
-			"popup-label1 popup-label1 popup-name popup-name popup-name"
-			"popup-label2 popup-label2 popup-macro popup-macro popup-macro"
-			"popup-label3 popup-label3 popup-kcal popup-kcal popup-kcal"
-			"popup-label4 popup-label4 popup-select popup-select popup-select"
-			"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
-	}
-
-	.popup2 {
-		margin: 2.5rem auto;
-		background: var(--color-dark);
-		border-radius: 1rem;
-		width: 30%;
-		height: 50%;
-		padding: 1rem;
-		position: relative;
-		transition: all 200ms ease-in-out;
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-		grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-		gap: 0px 0px;
-		grid-auto-flow: row;
-		grid-template-areas:
-			"popup-title popup-title popup-title popup-title popup-title"
-			"popup-label1 popup-label1 popup-select popup-select popup-select"
-			"popup-label2 popup-label2 popup-duration popup-duration popup-duration"
-			"popup-label3 popup-label3 popup-age popup-age popup-age"
-			"popup-label4 popup-label4 popup-weight popup-weight popup-weight"
-			"popup-label5 popup-label5 popup-sex popup-sex popup-sex"
-			"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
-	}
-	.popup3 {
-		margin: 2.5rem auto;
-		background: var(--color-dark);
-		width: 30%;
-		height: 50%;
-		padding: 1rem;
-		position: relative;
-		transition: all 200ms ease-in-out;
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-		grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
-		gap: 0px 0px;
-		grid-auto-flow: row;
-		grid-template-areas:
-			"popup-title popup-title popup-title popup-title popup-title"
-			"popup-label1 popup-label1 popup-select popup-select popup-select"
-			"popup-label2 popup-label2 popup-food-weight popup-food-weight popup-food-weight"
-			"popup-buttons2 popup-buttons2 popup-buttons2 popup-buttons2 popup-buttons2"
-			". . . . ."
-			"popup-title2 popup-title2 popup-title2 popup-title2 popup-title2"
-			"popup-label3 popup-label3 popup-raw-calories popup-raw-calories popup-raw-calories"
-			"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
-	}
-	
-}
 /* Desktop */
 @media only screen and (min-width: 768px) {
 	.popup {
 		margin: 2.5rem auto;
-		background: var(--color-dark);
+		background: var(--color-gray);
 		border-radius: 1rem;
 		width: 30%;
 		height: 50%;
@@ -292,7 +258,7 @@
 
 	.popup2 {
 		margin: 2.5rem auto;
-		background: var(--color-dark);
+		background: var(--color-gray);
 		border-radius: 1rem;
 		width: 30%;
 		height: 50%;
@@ -317,7 +283,7 @@
 	}
 	.popup3 {
 		margin: 2.5rem auto;
-		background: var(--color-dark);
+		background: var(--color-gray);
 		width: 30%;
 		height: 50%;
 		padding: 1rem;
@@ -326,7 +292,7 @@
 		transition: all 200ms ease-in-out;
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-		grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+		grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 		gap: 0px 0px;
 		grid-auto-flow: row;
 		grid-template-areas:
@@ -339,27 +305,19 @@
 			"popup-label3 popup-label3 popup-raw-calories popup-raw-calories popup-raw-calories"
 			"popup-buttons popup-buttons popup-buttons popup-buttons popup-buttons";
 	}
-	#popup0 {
-		position: fixed;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		z-index: 4;
-		visibility: visible;
-		pointer-events: none;
-		background-image: url(/img/macro-mate-bg.svg);
-		background-size: cover;
+	.popup4 {
+		position: relative;
+		transition: all 200ms ease-in-out;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr;
+		grid-auto-flow: row;
+		grid-template-areas:
+			". popup-label1 popup-label2 popup-label3 . "
+			". popup-img1 popup-img2 popup-img3 . "
+			". popup-buttons popup-buttons popup-buttons . ";
 	}
-	#popup4 {
-		position: fixed;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		z-index: 4;
-		visibility: visible;
-		pointer-events: none;
-		background-size: cover;
+	.popup-img-inner {
+		width: 100%;
 	}
 }

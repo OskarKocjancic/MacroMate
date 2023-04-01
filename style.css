@@ -20,6 +20,7 @@
 	box-sizing: border-box;
 	color: var(--color-white);
 	font-family: "Quicksand", sans-serif;
+	font-weight: 500;
 }
 body {
 	background-color: var(--color-dark-gray);
@@ -91,16 +92,6 @@ select {
 	padding: 0.5rem;
 	width: 50%;
 }
-.button-container {
-	grid-area: buttons;
-	border-radius: 1rem;
-}
-
-.button-container > a {
-	padding: 0.5rem;
-	border-radius: 0;
-	height: 100%;
-}
 
 .button {
 	background-color: var(--color-dark-green);
@@ -111,12 +102,48 @@ select {
 	padding: 1rem;
 	text-align: center;
 }
-.next-day {
-	border-radius: 0 1rem 1rem 0 !important ;
+
+.button-container {
+	grid-area: buttons;
+	border-radius: 1rem;
+	justify-content: space-evenly;
+	font-size: 0.8rem;
 }
-.prev-day {
-	border-radius: 1rem 0 0 1rem !important ;
+
+.button-container > a {
+	padding: 0.5rem;
 }
+
+#prev-day {
+}
+#next-day {
+}
+#add-kcal {
+	background-color: var(--color-red);
+}
+
+#add-c-food {
+	background-color: var(--color-brown);
+}
+#add-work {
+	background-color: var(--color-blue);
+}
+
+#add-kcal:hover {
+	background-color: var(--color-white);
+	color: var(--color-red);
+}
+
+#add-c-food:hover {
+	background-color: var(--color-white);
+	color: var(--color-brown);
+}
+#add-work:hover {
+	background-color: var(--color-white);
+	color: var(--color-blue);
+}
+
+
 .close {
 	padding: 0.25rem;
 }
@@ -145,8 +172,8 @@ select {
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
 	grid-template-areas:
-		"goals-up goals-up goals-up goals-right"
-		"goals-down goals-down goals-down goals-right";
+		"goals-labels goals-labels goals-labels goals-macro"
+		"goals-bar goals-bar goals-bar goals-macro";
 }
 .Items {
 	grid-area: Items;
@@ -177,7 +204,7 @@ select {
 		"food-icon food-icon food-kcal food-kcal food-text food-text food-text food-text";
 }
 .item a {
-	font-size: 1;
+	font-size: 1rem;
 }
 
 .food-label {
@@ -238,7 +265,7 @@ select {
 	width: auto;
 }
 .calories-tracking-label {
-	grid-area: goals-up;
+	grid-area: goals-labels;
 	width: 100%;
 	justify-content: space-between;
 }
@@ -264,14 +291,17 @@ select {
 	color: var(--color-green);
 	text-decoration: underline;
 }
+
+.pie-container {
+	grid-area: goals-macro;
+}
 .macro-pie {
-	grid-area: goals-right;
-	width: 100%;
+	width: 75%;
 	border-radius: 100%;
 	border: 0.1rem solid var(--color-light-gray);
 }
 .tracked-cal {
-	grid-area: goals-down;
+	grid-area: goals-bar;
 	width: 100%;
 	background-color: var(--color-dark-gray);
 	overflow: hidden;
@@ -300,31 +330,71 @@ select {
 		grid-auto-flow: row;
 		grid-template-areas:
 			" date date date "
-			" Goals Goals Goals"
-			" Items Items Items"
-			" Items Items Items"
-			" Items Items Items"
+			" Goals Goals Goals "
+			" Items Items Items "
+			" Items Items Items "
+			" Items Items Items "
 			" buttons buttons buttons ";
+	}
+	.item {
+		font-size: 0.8rem;
+	}
+	.button-container {
+		font-size: 1rem;
 	}
 }
 
-@media only screen and (min-width: 1070px) {
+@media only screen and (min-width: 860px) {
 	.page {
 		width: 100%;
 		height: 100vh;
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr [Ite] 1fr 1fr 1fr;
 		grid-template-rows: 0.25fr 0.25fr 1fr 1fr 1fr 0.25fr;
-		gap: 1rem 0;
+		gap: 1rem 1rem;
 		grid-auto-flow: row;
 		grid-template-areas:
-			". . date date date . ."
-			". . Goals Goals Goals . ."
-			". . Items Items Items . ."
-			". . Items Items Items . ."
-			". . Items Items Items . ."
-			". . buttons buttons buttons . .";
+			"date date date date date date date "
+			". Goals Items Items Items Items . "
+			". Goals Items Items Items Items . "
+			". Goals Items Items Items Items . "
+			". Goals Items Items Items Items . "
+			". buttons buttons buttons buttons buttons .";
 	}
+
+	.Goals {
+		grid-area: Goals;
+		justify-content: space-evenly;
+		background-color: var(--color-gray);
+		border-radius: 1rem;
+		padding: 1rem;
+		gap: 0 1rem;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 1fr 1fr;
+		grid-template-areas:
+			"goals-labels"
+			"goals-bar"
+			"goals-macro";
+	}
+	.calories-tracking-label {
+		grid-area: goals-labels;
+		width: 100%;
+		align-items: center;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	.calories-tracking-label > input {
+		width: 100%;
+	}
+	.tracking-label-container {
+		width: 100%;
+	}
+	.tracked-cal {
+		transform: rotate(270deg);
+		height: 25%;
+	}
+
 	.item {
 		width: 100%;
 		padding: 0.5rem;
@@ -354,10 +424,5 @@ select {
 	.button:hover {
 		background-color: var(--color-white);
 		color: var(--color-green);
-	}
-
-	.button-container {
-		grid-area: buttons;
-		padding: 0.5rem;
 	}
 }
